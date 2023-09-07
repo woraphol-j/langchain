@@ -742,6 +742,7 @@ class OpenSearchVectorSearch(VectorStore):
         max_chunk_bytes = _get_kwargs_value(kwargs, "max_chunk_bytes", 1 * 1024 * 1024)
         http_auth = _get_kwargs_value(kwargs, "http_auth", None)
         is_aoss = _is_aoss_enabled(http_auth=http_auth)
+        ids = _get_kwargs_value(kwargs, "ids", None)
 
         if is_aoss and not is_appx_search:
             raise ValueError(
@@ -777,5 +778,6 @@ class OpenSearchVectorSearch(VectorStore):
             mapping=mapping,
             max_chunk_bytes=max_chunk_bytes,
             is_aoss=is_aoss,
+            ids=ids,
         )
         return cls(opensearch_url, index_name, embedding, **kwargs)
